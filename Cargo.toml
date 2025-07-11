@@ -1,5 +1,6 @@
 [package]
-name = "opcua-handler"
+name = "dcs"
+description = "data connected service"
 version = "0.1.0"
 edition = "2024"
 

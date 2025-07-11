@@ -8,7 +8,7 @@
 //! 2. Connect to an endpoint specified by the url with security None
 //! 3. Subscribe to values and loop forever printing out their valrap();
 use std::{sync::Arc, vec};
-use std::fmt::{write, Write};
+use std::fmt::Write;
 use std::time::Duration;
 use dotenvy::{dotenv_override, var};
 use opcua::client::prelude::*;
@@ -86,21 +86,3 @@ pub fn send_kafka(broker: String, item: &MonitoredItem) {
     producer.send(&Record { key: ("start_kanban"), value: (buf.as_bytes()), topic: ("pss"), partition: (1) }).unwrap();
     buf.clear();
 }
-// pub async fn send_to_kafka(broker: &str, topic: &str, key: &str, payload: &str) -> Result<(), Box<dyn std::error::Error>> {
-//     let producer: Producer = ClientConfig::new()
-//         .set("bootstrap.servers", broker)
-//         .set("message.timeout.ms", "5000")
-//         .create()?;
-
-//     producer
-//         .send(
-//             FutureRecord::to(topic)
-//             .key(key)
-//             .payload(payload), 
-//             Duration::from_secs(0),
-//         )
-//         .await
-//         .map_err(|(e, _)| e)?;
-//         println!("Message sent to topic: {}", topic);
-//         Ok(())
-// }
